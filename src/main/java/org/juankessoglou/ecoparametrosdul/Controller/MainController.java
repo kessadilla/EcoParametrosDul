@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -39,13 +40,13 @@ public class MainController {
 
         iteraciones++;
         //añadimos todos los valores del formulario al modelo
-        model.addAttribute("usuario", "");
+        model.addAttribute("usuario", "Pepe");
         model.addAttribute("clave", "");
         model.addAttribute("iteraciones", iteraciones);
         model.addAttribute("genero_seleccionado", "");
-        model.addAttribute("aficiones_seleccionadas", "");
-        model.addAttribute("pais_seleccionado", "");
-        model.addAttribute("musicas_seleccionadas", "");
+        model.addAttribute("aficiones_seleccionadas", Arrays.asList("D", "P", "V"));
+        model.addAttribute("pais_seleccionado", "F");
+        model.addAttribute("musicas_seleccionadas", Arrays.asList("F", "R"));
         model.addAttribute("comentarios", "");
         model.addAttribute("archivo", "");
         model.addAttribute("licencia", "");
@@ -68,32 +69,30 @@ public class MainController {
             //añadimos todos los valores que se envían desde el formulario
             @RequestParam(required = false) String usuario,
             @RequestParam(required = false) String clave,
-            @RequestParam(name = "genero_seleccionado", required = false) String generoSeleccionado,
-            @RequestParam(name = "aficiones_seleccionadas", required = false) ArrayList<String> aficionesSeleccionadas,
-            @RequestParam(name = "pais_seleccionado", required = false) String paisSeleccionado,
-            @RequestParam(name = "musicas_seleccionadas", required = false) ArrayList<String> musicasSeleccionadas,
+            @RequestParam(required = false, name = "genero_seleccionado") String generoSeleccionado,
+            @RequestParam(required = false, name = "aficiones_seleccionadas") ArrayList<String> aficionesSeleccionadas,
+            @RequestParam(required = false, name = "pais_seleccionado") String paisSeleccionado,
+            @RequestParam(required = false, name = "musicas_seleccionadas") ArrayList<String> musicasSeleccionadas,
             @RequestParam(required = false) String comentarios,
             @RequestParam(required = false) String archivo,
             @RequestParam(required = false) String licencia,
-            @RequestParam(name = "imagen_enviar.x", required = false) String valorXCampoImagen,
-            @RequestParam(name = "imagen_enviar.y", required = false) String valorYCampoImagen,
-            //al declarar un requestparam Map<String, String>, se hace un mapa con los valores recibidos
+            @RequestParam(required = false, name = "imagen_enviar.x") String valorXCampoImagen,
+            @RequestParam(required = false, name = "imagen_enviar.y") String valorYCampoImagen,
+            //al declarar un requestparam Map<String, String> sin vincular a ningún valor devuelto,
+            //se hace un mapa con todos los valores recibidos
             @RequestParam Map<String, String> mapaParametros
     ){
         /*creamos una variable con el tamaño del mapa de parámetros
         usuario, clave, pais, comentario, archivo, e iteraciones, se envían siempre
-        usuario, clave, comentario y archivo se envían aunque se vacíos
-        pais siempre tiene un valor por defecto, por lo que se envía siempre
-        iteraciones se envía siempre, ya que contabiliza las vueltas de la app*/
+        - usuario, clave, comentario y archivo se envían aunque se vacíos
+        - pais siempre tiene un valor por defecto, por lo que se envía siempre
+        - iteraciones se envía siempre, ya que contabiliza las vueltas de la app*/
         int numParametros = mapaParametros.size();
 
 
         //sumamos una unidad a la iteración
         iteraciones++;
 
-        //si no se reciben parametros en las listas, se inicializan igualmente
-        if (aficionesSeleccionadas == null) aficionesSeleccionadas = new ArrayList<>();
-        if (musicasSeleccionadas == null) musicasSeleccionadas = new ArrayList<>();
         valorXCampoImagen = (valorXCampoImagen == null) ? "0" : valorXCampoImagen;
         valorYCampoImagen = (valorYCampoImagen == null) ? "0" : valorYCampoImagen;
 
@@ -120,17 +119,3 @@ public class MainController {
         return "formulario";
     }
 }
-/**1) campos del form DONE
- * 2) mandar formulario y repintar n veces DONE
- * 3) colecciones en Colecciones.java DONE
- * 4) dos métodos en controlador DONE
- * 5) toda la clase controladora se mapea en /formulario DONE
- * 6) metodo repinta POST, required false, variables iguales salvo dos palabras, solo String y ArrayList<String> DONE
- * 7) colecciones al controlador desde metodo DONE
- * 8) unico form, titulo original/repintado DONE
- * 9) TODO contador de parametros recibidos al enviar
- * 10) campo iteraciones mostrado al inicio DONE
- * 11) tolerante a cambios desde inspeccionar DONE
- * 12) evitar que el navegador cargue favicon.ico DONE
- * 13) mostrar imagen.x: <valor_x_campo_imagen> e imagen.y <valor_x_campo_imagen> DONE
- * 14) static debe contener directorios css, img, js DONE**/
