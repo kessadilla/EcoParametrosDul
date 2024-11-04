@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8">
     <!--esta línea evita que el favicon se cargue al dejar la ubicacion vacía-->
-    <link rel="icon" href="data:," />
-    <title>Formulario</title>
+    <link rel="icon" href="data:,">
+    <title th:text="${'Formulario ' + titulo}"></title>
 
 </head>
 <body>
@@ -12,78 +12,88 @@
     <h2 th:text="${'Iteración: ' + iteraciones}"></h2>
     <form action="/formulario/recibe-parametros" method="post">
         <!--Campo de usuario-->
-        <label th:text="#{eco-parametros.usuario}" for="usuario"></label><br />
-        <input type="text" th:value="${usuario}" name="usuario" id="usuario"/>
-        <br /><br />
+        <label th:text="#{eco-parametros.usuario}" for="usuario"></label><br>
+        <input type="text" th:value="${usuario}" name="usuario" id="usuario">
+        <br><br>
 
         <!--Campo de clave-->
-        <label th:text="#{eco-parametros.clave}" for="clave"></label><br />
-        <input type="password" th:value="${clave}" name="clave" id="clave"/>
-        <br /><br />
+        <label th:text="#{eco-parametros.clave}" for="clave"></label><br>
+        <input type="password" th:value="${clave}" name="clave" id="clave">
+        <br><br>
 
         <!--Campo de iteraciones-->
-        <input type="hidden" name="iteraciones" th:value="${iteraciones}"/>
+        <input type="hidden" name="iteraciones" th:value="${iteraciones}">
 
         <!--Campo de género-->
-        <label th:text="#{eco-parametros.genero}"></label><br />
-        <input th:each="genero: ${genero_HashMap}"
-               th:value="${genero.key}" th:text="${genero.value}"
-               th:checked="${genero.key == genero_seleccionado}"
-               type="radio" name="genero_seleccionado" />
-        <br /><br />
+        <label th:text="#{eco-parametros.genero}"></label><br>
+        <label>
+            <input th:each="genero: ${genero_HashMap}"
+                   th:value="${genero.key}" th:text="${genero.value}"
+                   th:checked="${genero.key == genero_seleccionado}"
+                   type="radio" name="genero_seleccionado">
+        </label>
+        <br><br>
 
         <!--Campo de aficiones-->
-        <label th:text="#{eco-parametros.aficiones}"></label><br />
-        <input th:each="af: ${aficiones_HashMap}"
-               th:value="${af.key}" th:text="${af.value}"
-               th:checked="${aficiones_seleccionadas.contains(af.key)}"
-               type="checkbox" name="aficiones_seleccionadas"/>
-        <br /><br />
+        <label th:text="#{eco-parametros.aficiones}"></label><br>
+        <label>
+            <input th:each="af: ${aficiones_HashMap}"
+                   th:value="${af.key}" th:text="${af.value}"
+                   th:checked="${aficiones_seleccionadas.contains(af.key)}"
+                   type="checkbox" name="aficiones_seleccionadas">
+        </label>
+        <br><br>
 
         <!--Campo de país-->
-        <label th:text="#{eco-parametros.pais}"></label><br />
-        <select name="pais_seleccionado">
-            <option th:each="pais: ${paises_HashMap}"
-                    th:value="${pais.key}" th:text="${pais.value}"
-                    th:selected="${pais_seleccionado == pais.key}"></option>
-        </select>
-        <br /><br />
+        <label th:text="#{eco-parametros.pais}"></label><br>
+        <label>
+            <select name="pais_seleccionado">
+                <option th:each="pais: ${paises_HashMap}"
+                        th:value="${pais.key}" th:text="${pais.value}"
+                        th:selected="${pais_seleccionado == pais.key}"></option>
+            </select>
+        </label>
+        <br><br>
 
         <!--Campo de música-->
-        <label th:text="#{eco-parametros.musica}"></label><br />
-        <select multiple name="musicas_seleccionadas">
-            <option th:each="musica: ${musica_HashMap}"
-                    th:value="${musica.key}" th:text="${musica.value}"
-                    th:selected="${musicas_seleccionadas.contains(musica.key)}"></option>
-        </select>
-        <br /><br />
+        <label th:text="#{eco-parametros.musica}"></label><br>
+        <label>
+            <select multiple name="musicas_seleccionadas">
+                <option th:each="musica: ${musica_HashMap}"
+                        th:value="${musica.key}" th:text="${musica.value}"
+                        th:selected="${musicas_seleccionadas.contains(musica.key)}"></option>
+            </select>
+        </label>
+        <br><br>
 
         <!--Campo de comentarios-->
-        <label th:text="#{eco-parametros.comentarios}" for="comentarios"></label><br />
-        <textarea name="comentarios" id="comentarios" rows="4" cols="50" th:text="${comentarios}" />
-        <br /><br />
+        <label th:text="#{eco-parametros.comentarios}" for="comentarios"></label><br>
+        <textarea name="comentarios" id="comentarios" rows="4" cols="50" th:text="${comentarios}"></textarea>
+        <br><br>
 
         <!--Campo de archivo-->
         <label th:text="#{eco-parametros.archivo}"></label>
-        <input type="file" name="archivo" id="archivo"/>
-        <br /><br />
+        <input type="file" name="archivo" id="archivo">
+        <br><br>
 
         <!--Campo de licencia-->
-        <input type="checkbox" th:value="${'SI'}" name="licencia"
-            th:checked="${licencia == 'SI'}" />
+        <label>
+            <input type="checkbox" th:value="${'SI'}" name="licencia"
+                th:checked="${licencia == 'SI'}">
+        </label>
         <label th:text="#{eco-parametros.licencia}"></label>
-        <br /><br />
+        <br><br>
 
         <!--Campo de envío-->
-        <input type="submit" th:value="#{eco-parametros.enviar}" />
+        <input type="submit" th:value="#{eco-parametros.enviar}">
 
         <!--Campo de reseteo-->
-        <input type="reset" th:value="#{eco-parametros.resetear}" />
-        <br /><br />
+        <input type="reset" th:value="#{eco-parametros.resetear}">
+        <br><br>
 
         <!--Campo de envío con imagen-->
         <input type="image" name="imagen_enviar" src="/img/flecha_derecha.png"
-               alt="enviar" width="100" height="100" />
+               alt="enviar" width="100" height="100">
 
     </form>
     <p th:text="${'Imagen.x: ' + valor_x_campo_imagen + ', e imagen.y: ' + valor_y_campo_imagen} + '.'"></p>

@@ -5,10 +5,10 @@ import java.util.Map;
 
 public class Colecciones {
 
-    private static Map<String, String> generoHashMap = new HashMap<>();
-    private static Map<String, String> aficionesHashMap = new HashMap<>();
-    private static Map<String, String> paisesHashMap = new HashMap<>();
-    private static Map<String, String> musicaHashMap = new HashMap<>();
+    private static final Map<String, String> generoHashMap = new HashMap<>();
+    private static final Map<String, String> aficionesHashMap = new HashMap<>();
+    private static final Map<String, String> paisesHashMap = new HashMap<>();
+    private static final Map<String, String> musicaHashMap = new HashMap<>();
     static {
         generoHashMap.put("F", "Feminino");
         generoHashMap.put("M", "Masculino");
