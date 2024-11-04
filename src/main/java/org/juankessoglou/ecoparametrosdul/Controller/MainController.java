@@ -93,6 +93,11 @@ public class MainController {
         //sumamos una unidad a la iteración
         iteraciones++;
 
+        //si no se envía ningún parámetro a las listas, se declaran igualmente para que no den errores
+        aficionesSeleccionadas = (aficionesSeleccionadas == null) ? new ArrayList<>() : aficionesSeleccionadas;
+        musicasSeleccionadas = (musicasSeleccionadas == null) ? new ArrayList<>() : musicasSeleccionadas;
+
+        //si no se pulsa la imagen, cambiamos el valor null por 0
         valorXCampoImagen = (valorXCampoImagen == null) ? "0" : valorXCampoImagen;
         valorYCampoImagen = (valorYCampoImagen == null) ? "0" : valorYCampoImagen;
 
