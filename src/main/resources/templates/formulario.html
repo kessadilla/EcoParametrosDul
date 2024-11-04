@@ -4,14 +4,11 @@
     <meta charset="UTF-8" />
     <!--esta línea evita que el favicon se cargue al dejar la ubicacion vacía-->
     <link rel="icon" href="data:," />
-    <link rel="stylesheet" href="/css/estilos.css" />
-    <script src="/js/script.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
     <title>Formulario</title>
 
 </head>
 <body>
-    <h1 th:text="${titulo}" class="text-center"></h1>
+    <h1 th:text="${titulo}"></h1>
     <h2 th:text="${'Iteración: ' + iteraciones}"></h2>
     <form action="/formulario/recibe-parametros" method="post">
         <!--Campo de usuario-->
