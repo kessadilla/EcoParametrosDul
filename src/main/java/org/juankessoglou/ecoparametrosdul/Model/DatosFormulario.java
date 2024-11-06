@@ -7,7 +7,7 @@ import java.time.LocalDate;
 @Getter @Setter @ToString
 @AllArgsConstructor @NoArgsConstructor
 public class DatosFormulario {
-    @NotBlank(message = "El campo usuario no puede estar vacío") private String nombre;
+    @NotBlank(message = "El campo usuario no puede estar vacío") private String usuario;
 
     @NotBlank @Size(min = 6, max = 20,
         message = "La contraseña debe tener entre 6 y 20 caracteres") private String clave;

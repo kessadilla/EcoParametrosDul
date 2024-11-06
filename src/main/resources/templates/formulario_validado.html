@@ -8,7 +8,7 @@
 
 </head>
 <body>
-    <form action="/formulario/recibe-parametros-validado" method="get">
+    <form action="/formulario/recibe-parametros-validado" method="post">
 
         <!--Campo de usuario-->
         <label th:text="#{eco-parametros.usuario}" for="usuario"></label><br>
@@ -22,15 +22,18 @@
 
         <!--Campo fecha nacimiento-->
         <label th:text="#{eco-parametros.fecha_nac}" for="fecha_nac"></label><br>
-        <input type="text" th:value="${fecha_nacimiento}" name="fecha_nac" id="fecha_nac">
+        <input type="text" th:value="${fechaNacimiento}" name="fecha_nac" id="fecha_nac">
+        <br><br>
 
         <!--Campo edad-->
         <label th:text="#{eco-parametros.edad}" for="edad"></label><br>
         <input type="number" th:value="${edad}" name="edad" id="edad">
+        <br><br>
 
         <!--Campo peso-->
         <label th:text="#{eco-parametros.peso}" for="peso"></label><br>
         <input type="number" th:value="${peso}" name="peso" id="peso">
+        <br><br>
 
         <!--Campo de género-->
         <label th:text="#{eco-parametros.genero}"></label><br>
@@ -38,7 +41,7 @@
             <input th:each="genero: ${genero_HashMap}"
                    th:value="${genero.key}" th:text="${genero.value}"
                    th:checked="${genero.key == genero_seleccionado}"
-                   type="radio" name="genero_seleccionado">
+                   type="radio" name="generoSeleccionado">
         </label>
         <br><br>
 
