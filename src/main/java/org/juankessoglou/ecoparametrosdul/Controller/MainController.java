@@ -1,5 +1,6 @@
 package org.juankessoglou.ecoparametrosdul.Controller;
 import org.juankessoglou.ecoparametrosdul.Model.Colecciones;
+import org.juankessoglou.ecoparametrosdul.Model.DatosFormulario;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -118,5 +119,15 @@ public class MainController {
 
 
         return "formulario";
+    }
+
+    @RequestMapping(value = "devuelve-formulario-validado" , method = GET)
+    public String devuelveFormularioValidado(){
+        return "formulario_validado";
+    }
+
+    @RequestMapping(value = "recibe-parametros-validado" , method = POST)
+    public String recibeParametrosValidado(DatosFormulario datosFormulario){
+        return "formulario_validado";
     }
 }
