@@ -5,34 +5,48 @@
     <!--esta línea evita que el favicon se cargue al dejar la ubicacion vacía-->
     <link rel="icon" href="data:,">
     <title>Formulario</title>
-
+    <link rel="stylesheet" th:href="@{/css/estilos.css}">
 </head>
 <body>
-    <form action="/formulario/recibe-parametros-validado" method="post">
+    <h2>Formulario</h2>
+    <h3 class="correcto" th:text="${mensajeOK}"></h3>
+    <h3 class="error" th:text="${mensajeNOK}"></h3>
+    <form action="/formulario/recibe-parametros-validado" method="post"
+            th:object="${datosFormulario}">
 
         <!--Campo de usuario-->
         <label th:text="#{eco-parametros.usuario}" for="usuario"></label><br>
-        <input type="text" th:value="${usuario}" name="usuario" id="usuario">
+        <input type="text" th:field="*{usuario}">
+        <div th:each="err: ${#fields.errors('usuario')}"
+            th:text="${err}" class="error"></div>
         <br><br>
 
         <!--Campo de clave-->
         <label th:text="#{eco-parametros.clave}" for="clave"></label><br>
-        <input type="password" th:value="${clave}" name="clave" id="clave">
+        <input type="password" th:field="*{clave}">
+        <div th:each="err: ${#fields.errors('clave')}"
+             th:text="${err}" class="error"></div>
         <br><br>
 
         <!--Campo fecha nacimiento-->
         <label th:text="#{eco-parametros.fecha_nac}" for="fecha_nac"></label><br>
-        <input type="text" th:value="${fechaNacimiento}" name="fecha_nac" id="fecha_nac">
+        <input type="text" th:field="*{fechaNacimiento}">
+        <div th:each="err: ${#fields.errors('fechaNacimiento')}"
+             th:text="${err}" class="error"></div>
         <br><br>
 
         <!--Campo edad-->
         <label th:text="#{eco-parametros.edad}" for="edad"></label><br>
-        <input type="number" th:value="${edad}" name="edad" id="edad">
+        <input type="number" th:field="*{edad}">
+        <div th:each="err: ${#fields.errors('edad')}"
+             th:text="${err}" class="error"></div>
         <br><br>
 
         <!--Campo peso-->
         <label th:text="#{eco-parametros.peso}" for="peso"></label><br>
-        <input type="number" th:value="${peso}" name="peso" id="peso">
+        <input type="number" th:field="*{peso}">
+        <div th:each="err: ${#fields.errors('peso')}"
+             th:text="${err}" class="error"></div>
         <br><br>
 
         <!--Campo de género-->

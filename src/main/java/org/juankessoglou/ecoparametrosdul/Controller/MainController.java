@@ -1,8 +1,10 @@
 package org.juankessoglou.ecoparametrosdul.Controller;
+import jakarta.validation.Valid;
 import org.juankessoglou.ecoparametrosdul.Model.Colecciones;
 import org.juankessoglou.ecoparametrosdul.Model.DatosFormulario;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -122,12 +124,21 @@ public class MainController {
     }
 
     @RequestMapping(value = "devuelve-formulario-validado" , method = GET)
-    public String devuelveFormularioValidado(){
+    public String devuelveFormularioValidado(@ModelAttribute("datosFormulario") DatosFormulario datosFormulario){
         return "formulario_validado";
     }
 
     @RequestMapping(value = "recibe-parametros-validado" , method = POST)
-    public String recibeParametrosValidado(DatosFormulario datosFormulario){
+    public String recibeParametrosValidado(Model modelo,
+                                           @Valid @ModelAttribute("datosFormulario") DatosFormulario datosFormulario,
+                                           BindingResult bindingResult){
+
+        if (bindingResult.hasErrors()) {
+            modelo.addAttribute("mensajeNOK", "El formulario tiene errores.");
+            return "formulario_validado";
+        }
+
+        modelo.addAttribute("mensajeOK", "El formulario está correcto.");
         return "formulario_validado";
     }
 }

@@ -4,8 +4,8 @@ import jakarta.validation.constraints.*;
 import lombok.*;
 import java.time.LocalDate;
 
-@Getter @Setter @ToString
 @AllArgsConstructor @NoArgsConstructor
+@Getter @Setter @ToString
 public class DatosFormulario {
     @NotBlank(message = "El campo usuario no puede estar vacío") private String usuario;
 
