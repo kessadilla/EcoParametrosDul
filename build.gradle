@@ -31,8 +31,6 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     //Etiquetas de Thymeleaf
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
-    //Lombok -> @AllArgsConstructor, @Setter, @Getter, etc...
-    implementation 'org.projectlombok:lombok'
     //validacion @NotBlank, etc
     implementation 'org.springframework.boot:spring-boot-starter-validation'
 

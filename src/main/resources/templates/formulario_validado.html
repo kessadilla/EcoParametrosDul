@@ -6,6 +6,16 @@
     <link rel="icon" href="data:,">
     <title>Formulario</title>
     <link rel="stylesheet" th:href="@{/css/estilos.css}">
+    <script src ="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        let output = document.getElementById("deseleccionarGenero");
+        $('#btn').click(function () {
+
+            // clear all radio buttons
+            $("input[type=radio][name=color]").prop('checked', false);
+            output.innerHTML = "All radio buttons are unchecked!"
+        })
+    </script>
 </head>
 <body>
     <h2>Formulario</h2>
@@ -57,6 +67,7 @@
                    th:checked="${genero.key == genero_seleccionado}"
                    type="radio" name="generoSeleccionado">
         </label>
+        <input type="button" id="deseleccionarGenero" >
         <br><br>
 
         <!--Campo de envío-->
